@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+
+<!--    <meta name="format-detection" content="telephone=yes"/>-->
+
+<!--    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>-->
+    <!-- <script src="jquery-3.6.1.min.js"></script> -->
+   <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.js"></script>
+    <title>牛啤</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        /*很神奇！！下面四行代码可以大幅提升流畅度！！！删除了流畅度就没了*/
+        html,div {
+            touch-action:none;
+            touch-action:pan-y;
+        }
+        .jelly_scale_1{
+            -webkit-animation:jelly_scale_1 0.5s linear;
+        }
+        @-webkit-keyframes jelly_scale_1 {
+            0% { transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity:0;}
+            3.4% { transform: matrix3d(0.316, 0, 0, 0, 0, 0.407, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            4.7% { transform: matrix3d(0.45, 0, 0, 0, 0, 0.599, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            6.81% { transform: matrix3d(0.659, 0, 0, 0, 0, 0.893, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            9.41% { transform: matrix3d(0.883, 0, 0, 0, 0, 1.168, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            10.21% { transform: matrix3d(0.942, 0, 0, 0, 0, 1.226, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            13.61% { transform: matrix3d(1.123, 0, 0, 0, 0, 1.332, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            14.11% { transform: matrix3d(1.141, 0, 0, 0, 0, 1.331, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            17.52% { transform: matrix3d(1.208, 0, 0, 0, 0, 1.239, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); opacity:1;}
+            18.72% { transform: matrix3d(1.212, 0, 0, 0, 0, 1.187, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            21.32% { transform: matrix3d(1.196, 0, 0, 0, 0, 1.069, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            24.32% { transform: matrix3d(1.151, 0, 0, 0, 0, 0.96, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            25.23% { transform: matrix3d(1.134, 0, 0, 0, 0, 0.938, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            29.03% { transform: matrix3d(1.063, 0, 0, 0, 0, 0.897, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            29.93% { transform: matrix3d(1.048, 0, 0, 0, 0, 0.899, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            35.54% { transform: matrix3d(0.979, 0, 0, 0, 0, 0.962, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            36.74% { transform: matrix3d(0.972, 0, 0, 0, 0, 0.979, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            41.04% { transform: matrix3d(0.961, 0, 0, 0, 0, 1.022, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            44.44% { transform: matrix3d(0.966, 0, 0, 0, 0, 1.032, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            52.15% { transform: matrix3d(0.991, 0, 0, 0, 0, 1.006, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            59.86% { transform: matrix3d(1.006, 0, 0, 0, 0, 0.99, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            63.26% { transform: matrix3d(1.007, 0, 0, 0, 0, 0.992, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            75.28% { transform: matrix3d(1.001, 0, 0, 0, 0, 1.003, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            85.49% { transform: matrix3d(0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            90.69% { transform: matrix3d(0.999, 0, 0, 0, 0, 0.999, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+            100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+        }
+        .move_2{
+            -webkit-animation:move_2 2s cubic-bezier(0,.99,0,.99)
+        }
+        @-webkit-keyframes move_2{
+            0%{ -webkit-transform:translateX(-100%);}
+        }
+        .move_3{
+            -webkit-animation:move_3 1s cubic-bezier(.01,.98,.02,1);
+        }
+        @-webkit-keyframes move_3{
+            0%{ -webkit-transform:translateX(-100%); opacity:1;}
+        }
+        .move_4{
+            -webkit-animation:move_4 1.5s cubic-bezier(.01,.98,.02,1);
+        }
+        @-webkit-keyframes move_4{
+            0%{margin-top: 50vh;margin-left: 50%;width: 0%;height: 0vh;border-top-right-radius: 999px;border-top-left-radius: 999px;
+                border-bottom-right-radius: 999px;border-bottom-left-radius: 999px;}
+        }
+
+        div.at-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .at-item {
+            width: 100px; height: 100px; background-color:#ffe672;
+
+            animation-name: slide-out-elliptic-right-bck;
+            animation-duration: 0.8s;
+            animation-timing-function: ease;
+            animation-delay: 0s;
+            animation-iteration-count: 1;
+            animation-direction: normal;
+            animation-fill-mode: none;
+
+            /* shorthand
+            animation: slide-out-elliptic-right-bck 1s ease 0s 1 normal none;*/
+        }
+        @keyframes slide-out-elliptic-right-bck {
+
+            0% {
+                transform:translateX(0) rotateY(0) scale(1);
+                transform-origin:1800px 50%;
+                opacity:1;
+            }
+            100% {
+                transform:translateX(1000px) rotateY(-30deg) scale(0);
+                transform-origin:-100% 50%;
+                opacity:1;
+            }
+        }
+    </style>
+</head>
+<body>
+<div  style="position: absolute;width: 100%;height: 100vh;overflow: hidden;">
+
+
+    <div id="shouyeshezhi" class="liujitanchuang" style="z-index: 22;display: none; font-size: 70px; overflow: hidden; position: absolute;
+width: 100%; height: 100vh; background-color: gray; margin-left: 0%; border-radius: 0px;">
+
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 4vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.9em;text-align: center;line-height: 8vh;">返回透明度100%</div>
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 16vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.9em;text-align: center;line-height: 8vh;">返回透明度80%</div>
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 28vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.9em;text-align: center;line-height: 8vh;">返回透明度60%</div>
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 40vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.9em;text-align: center;line-height: 8vh;">返回透明度40%</div>
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 52vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.9em;text-align: center;line-height: 8vh;">返回透明度20%</div>
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 64vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.6em;font-weight: bolder;text-align: center;line-height: 8vh;">0%,还是能点击,有红色指导线</div>
+        <div class="tmzxz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 76vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.6em;font-weight: bolder;text-align: center;line-height: 8vh;">真正的全透明,还是能点击</div>
+
+
+
+        <div class="fhzjm" style="z-index: 22;font-size: 70px;position: absolute;overflow: hidden;width: 170px;height: 70%;margin-left: 1%;border-radius: 31px;margin-top: 30%;background-color: ;">
+            <div class="fanhui" dengji="shouyeshezhi" huimu="liujihuimu" style="width: 100%;height: 84%;background-color: lightgray;text-align: center;line-height: 230%;font-size: 1.6em;">
+                点击返回
+            </div>
+            <div style="width: 100%;height: 6px;background-color: red;">
+            </div>
+            <div class="shezhi erjijiemianshezhi" style="width: 100%;height: 16%;background-color: darkslategray;text-align: center;line-height: 160%;color: white;font-size: 0.8em;">
+                透明度设置
+            </div>
+        </div>
+    </div>
+
+
+    <div id="lzditu" class="yijitanchuang" style="z-index: 12;display: none; font-size: 70px; overflow: hidden; position: absolute;
+width: 100%; height: 100vh; background-color: white; margin-left: 0%; border-radius: 0px;">
+        <!--长挂返回-->
+        <div class="fhzjm" style="z-index: 22;font-size: 70px;position: absolute;overflow: hidden;width: 170px;height: 70%;margin-left: 1%;border-radius: 31px;margin-top: 30%;background-color: ;">
+            <div class="fanhui" dengji="lzditu" huimu="yijihuimu" style="width: 100%;height: 84%;background-color: lightgray;text-align: center;line-height: 230%;font-size: 1.6em;">
+                点击返回
+            </div>
+            <div style="width: 100%;height: 6px;background-color: red;">
+            </div>
+            <div class="shezhi" style="width: 100%;height: 16%;background-color: darkslategray;text-align: center;line-height: 160%;color: white;font-size: 0.8em;">
+                透明度设置
+            </div>
+        </div>
+        <!--    定位界面-->
+        <div class="jiemian" style="display: block;position: relative;height: 100%;">
+            <div style="width: 100%;height: 100px;line-height: 100px;text-align: center;position: relative;">
+                <!--            <div style="position: absolute;float: left;width: 160px;height: 100%;background-color: gray;color: white;text-align: center;top: 0;" id="tuichu">退出</div>-->
+            </div>
+
+            <div id="daisousuoshuru" style="margin-top: 54vh;width: 94%;height: 191px;margin-left: 3%;border-radius: 8px;overflow: hidden;background-color: white;line-height: 154px;">
+                <!--            <div  style="height: 170px;margin-top: 5px;width: 20%;float: left;border-radius: 8px;margin-left: 1%;text-align: center;background-color: gray;-->
+                <!--            color: white;font-size: 2em;line-height: 170px;" id="qingkong">×</div>-->
+                <div style="float: left;height: 173px;width: 79%;margin-top: 7px;margin-left: 20%;position: relative;">
+                    <input id="sou_input" type="text" style="border-radius: 8px;position:absolute;top: 0;width: 97%;font-size: 1em;height: 94%;border: 5px solid cornflowerblue;"></div>
+            </div>
+
+            <div style="
+        background-color: cornflowerblue;
+        color: white;
+        border-radius: 8px;
+        float: left;
+        margin-left: 3%;
+        margin-top: 1%;
+        font-size: 0.7em;
+        height: 8vh;
+        line-height: 8vh;
+        width: 49%;
+        text-align: center;
+        display: none;
+        " id="dtschjc">地图上传或纠错</div>
+
+            <div style="display: none;
+        background-color: #FE649A;
+        color: white;
+        border-radius: 8px;
+        float: left;
+        margin-left: 3%;
+        margin-top: 1%;
+        font-size: 0.7em;
+        height: 8vh;
+        line-height: 8vh;
+        width: 49%;
+        text-align: center;
+        " id="zzxlh">站长掏心话❤</div>
+
+
+            <div style="display: none;
+        background-color: white;
+        border-radius: 8px;
+        float: right;
+        margin-right: 3%;
+        margin-top: 1vh;
+        font-size: 0.7em;
+        height: 8vh;
+        line-height: 8vh;
+        width: 94%;
+        text-align: center;
+        "><div style="
+    float: left;
+    width: 32%;
+">高效率模式</div>
+                <div style="
+    float: left;
+    width: 30%;
+    background-color: gray;
+    height: 6vh;
+    margin-top: 1vh;
+    border-radius: 8px;
+" id="gxkmswk"><div style="
+    float: left;
+    width: 46%;
+    background-color: white;
+    height: 5vh;
+    margin-top: 0.5vh;
+    border-radius: 8px;
+    margin-left: 4%;
+" id="xlvmskg"></div>
+
+                </div>
+
+                <div style="
+    float: right;
+    width: 29%;
+    color: orange;
+    font-size: 1.3em;
+" id="yongfa">用法》
+                </div>
+
+            </div>
+
+            <div id="dingweihoujiemian" style="position: absolute; width: 100%; height: 100%; background-color: gray; top: 0px;display: block;">
+
+
+                <div id="dingweihoujiemian_ys" style="float: left;width: 80%;height: 30vh;overflow: auto;position: absolute;right: 0;background-color: ;">
+                    <!--                地图里的框内的大数一般是栋数，框边的小数一般是单元数<u class="cklz" lz="http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcUjxVbV9nsjDbYqg7el1Awsjrocn*MjounNcwtYHd8JUcJmQeHywr6fhbTy*bbSRXXfgib18W4*4LSk*.K6WeOo!/b&amp;bo=TQOCAk0DggIDGTw!&amp;rf=viewer_4" style="color: orange;">查看例子</u>-->
+                    <input id="zhenzheninput" type="text" style="border-radius: 8px;position:absolute;bottom: 0px;width: 92%;font-size: 1.3em;height: 15vh;line-height: 15vh;border: 16px solid cornflowerblue;">
+                </div>
+
+                <div id="xiaoqu_rongqi" style="float: left;width: 80%;height: 70vh;overflow: auto;position: absolute;bottom: 0;right: 0;">请输入小区名
+
+                </div>
+            </div>
+
+        </div>
+</div>
+
+    <!--ssss-->
+    <!--    加qq提示 -->
+    <div id="jqqts" class="erjitanchuang" style="z-index: 14;display: none; font-size: 70px; overflow: auto; position: absolute;
+width: 100%; height: 100vh; background-color: gray; margin-left: 0%; border-radius: 0px;">
+
+        <div  style="width: 70%;height: 8vh;position: absolute;right: 7%;margin-top: 17vh;font-size: 0.8em;text-align: center;line-height: 8vh;color: white;font-weight: 900;">请复制下面qq号</div>
+        <div  style="width: 70%;height: 8vh;position: absolute;right: 7%;margin-top: 27vh;font-size: 1.2em;text-align: center;line-height: 8vh;color: white;font-weight: 900;">1960241921</div>
+        <div class="dkqq" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 42vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;">打开qq</div>
+
+        <div class="fhzjm" style="z-index: ;font-size: 70px;position: absolute;overflow: hidden;width: 170px;height: 70%;margin-left: 1%;border-radius: 31px;margin-top: 30%;background-color: ;">
+            <div class="fanhui" dengji="jqqts" huimu="erjihuimu" style="width: 100%;height: 84%;background-color: lightgray;text-align: center;line-height: 230%;font-size: 1.6em;">
+                点击返回
+            </div>
+            <div style="width: 100%;height: 6px;background-color: red;">
+            </div>
+            <div class="shezhi erjijiemianshezhi" style="width: 100%;height: 16%;background-color: darkslategray;text-align: center;line-height: 160%;color: white;font-size: 0.8em;">
+                透明度设置
+            </div>
+        </div>
+    </div>
+
+    <!--    加qq群提示 -->
+    <div id="jqqqts" class="erjitanchuang" style="z-index: 14;display: none; font-size: 70px; overflow: auto; position: absolute;
+width: 100%; height: 100vh; background-color: gray; margin-left: 0%; border-radius: 0px;">
+
+        <div  style="width: 70%;height: 8vh;position: absolute;right: 7%;margin-top: 17vh;font-size: 0.8em;text-align: center;line-height: 8vh;color: white;font-weight: 900;">请复制下面qq群号</div>
+        <div  style="width: 70%;height: 8vh;position: absolute;right: 7%;margin-top: 27vh;font-size: 1.2em;text-align: center;line-height: 8vh;color: white;font-weight: 900;">223196899</div>
+        <div class="dkqq" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 42vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;">打开qq</div>
+
+        <div class="fhzjm" style="z-index: ;font-size: 70px;position: absolute;overflow: hidden;width: 170px;height: 70%;margin-left: 1%;border-radius: 31px;margin-top: 30%;background-color: ;">
+            <div class="fanhui" dengji="jqqqts" huimu="erjihuimu" style="width: 100%;height: 84%;background-color: lightgray;text-align: center;line-height: 230%;font-size: 1.6em;">
+                点击返回
+            </div>
+            <div style="width: 100%;height: 6px;background-color: red;">
+            </div>
+            <div class="shezhi erjijiemianshezhi" style="width: 100%;height: 16%;background-color: darkslategray;text-align: center;line-height: 160%;color: white;font-size: 0.8em;">
+                透明度设置
+            </div>
+        </div>
+    </div>
+
+
+<!--    免费电影网站 -->
+    <div id="mfdywz" class="yijitanchuang" style="z-index: 12;display: none; font-size: 70px; overflow: auto; position: absolute;
+width: 100%; height: 100vh; background-color: gray; margin-left: 0%; border-radius: 0px;">
+
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 4vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://o8tv.com/vodplay/410884-9-1.html#slide{1}">555电影网</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 16vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://buosn.com/vodplay/173101-1-1/">NETFLIX影视</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 28vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.kanxiw.com/play/365860-7-1.html">看戏网</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 40vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.4kvm.com/seasons/kuangb">4K影视</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 52vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.smdyy.cc/play/97664-2-1.html">神马影院</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 64vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.kaixinyes.com/play/437949-7-1.html">开心影院</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 76vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.kanxiy.com/play/365860-7-1.html">看戏影视</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 88vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.pianbus.com/yun/288998-7-1.html">片吧影院</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 100vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.1010dy3.com/play/84027-1-1/">双十电影</div>
+        <div class="dywz" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 112vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://www.yizidy.com/vod/45397/play.html?45397-1-1">椅子电影</div>
+        <!--        <div class="gxfs" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 40vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;" dizhi="555">更新地址4</div>-->
+        <!--        <div class="gxfs" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 52vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;" dizhi="555">加qq群获取软件</div>-->
+        <div class="fhzjm" style="z-index: ;font-size: 70px;position: absolute;overflow: hidden;width: 170px;height: 70%;margin-left: 1%;border-radius: 31px;margin-top: 30%;background-color: ;">
+            <div class="fanhui" dengji="mfdywz" huimu="yijihuimu" style="width: 100%;height: 84%;background-color: lightgray;text-align: center;line-height: 230%;font-size: 1.6em;">
+                点击返回
+            </div>
+            <div style="width: 100%;height: 6px;background-color: red;">
+            </div>
+            <div class="shezhi erjijiemianshezhi" style="width: 100%;height: 16%;background-color: darkslategray;text-align: center;line-height: 160%;color: white;font-size: 0.8em;">
+                透明度设置
+            </div>
+        </div>
+    </div>
+
+
+    <div id="xbbdzjm" class="yijitanchuang" style="z-index: 12;display: none; font-size: 70px; overflow: hidden; position: absolute;
+width: 100%; height: 100vh; background-color: gray; margin-left: 0%; border-radius: 0px;">
+
+<!--        <div class="gxfs" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 4vh;;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;color: forestgreen;font-weight: 900;" dizhi="https://wwow.lanzoum.com/b047qnupg">更新地址1，文件密码66</div>-->
+        <div class="gxfs" style="width: 70%;height: 16vh;background-color: white;position: absolute;right: 7%;margin-top: 16vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.7em;text-align: center;line-height: 4.9vh;" dizhi="555"><div style="display: inline;color: forestgreen;font-weight: 900;">更新地址1：</div>加qq群
+<!--            <div style="display: inline;">223196899</div>-->
+            获取最新软件
+<!--            ，点击复制号码并打开qq-->
+        </div>
+        <div class="gxfs" style="width: 70%;height: 17vh;background-color: white;position: absolute;right: 7%;margin-top: 36vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.7em;text-align: center;line-height: 5.3vh;" dizhi="555"><div style="display: inline;color: forestgreen;font-weight: 900;">更新地址2：</div>加qq
+<!--            <div style="display: inline;">1960241921</div>-->
+            获取最新软件(可能回复不及时)
+<!--            ，点击复制号码并打开qq-->
+        </div>
+<!--        <div class="gxfs" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 40vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;" dizhi="555">更新地址4</div>-->
+<!--        <div class="gxfs" style="width: 70%;height: 8vh;background-color: white;position: absolute;right: 7%;margin-top: 52vh;border: 9px solid lightgray;border-radius: 22px;font-size: 0.8em;text-align: center;line-height: 8vh;" dizhi="555">加qq群获取软件</div>-->
+        <div class="fhzjm" style="z-index: ;font-size: 70px;position: absolute;overflow: hidden;width: 170px;height: 70%;margin-left: 1%;border-radius: 31px;margin-top: 30%;background-color: ;">
+            <div class="fanhui" dengji="xbbdzjm" huimu="yijihuimu" style="width: 100%;height: 84%;background-color: lightgray;text-align: center;line-height: 230%;font-size: 1.6em;">
+                点击返回
+            </div>
+            <div style="width: 100%;height: 6px;background-color: red;">
+            </div>
+            <div class="shezhi erjijiemianshezhi" style="width: 100%;height: 16%;background-color: darkslategray;text-align: center;line-height: 160%;color: white;font-size: 0.8em;">
+                透明度设置
+            </div>
+        </div>
+    </div>
+
+    <!--    一二三四级灰幕-->
+    <div class="yijihuimu  huimu" style="z-index: 11;display: none;position: absolute;width: 100%;height: 100%;background-color: black;opacity: .9;"></div>
+    <div class="erjihuimu  huimu" style="z-index: 13;display: none;position: absolute;width: 100%;height: 100%;background-color: black;opacity: .9;"></div>
+    <div class="sanjihuimu huimu" style="z-index: 15;display: none;position: absolute;width: 100%;height: 100%;background-color:black;opacity: .9;"></div>
+    <div class="sijihuimu  huimu" style="z-index: 17;display: none;position: absolute;width: 100%;height: 100%;background-color: black;opacity: .9;"></div>
+    <div class="wujihuimu  huimu" style="z-index: 19;display: none;position: absolute;width: 100%;height: 100%;background-color: black;opacity: .9;"></div>
+    <div class="liujihuimu huimu" style="z-index: 21;display: none;position: absolute;width: 100%;height: 100%;background-color: black;opacity: .9;"></div>
+    <div class="jinggaotishi" style="z-index: 999;display: none;position: absolute;width: 100%;height: 160px;background-color:white;margin-top: 40%;text-align: center;line-height: 160px;">定位中..</div>
+    <div class="quanpinghuimu huimu" style="z-index: 998;display: none;position: absolute;width: 100%;height: 100%;background-color: black;opacity: .4;"></div>
+
+    <div id="home" style="width: 100%;height: 100vh;position: relative;overflow-x: hidden;z-index: 0;">
+
+
+        <div class="gn" id="shouyeshezhi_id" style="display: block;position: fixed;width: 180px;
+        height: 180px;background-color: red;bottom: 20px;left: 22px;border-radius: 222px;text-align: center;
+        font-size: 4em;box-shadow: #b20101 9px 9px 0px;
+        line-height: 180px;font-weight: bold;color: white;">设置</div>
+
+        <!--    <div id="lzditu"  style="display: none;position: absolute;width: 100%;height: 100vh;background-color: red;margin-left: 0%;border-radius: 0px;">-->
+
+        <!--    </div>-->
+
+
+
+
+        <div  style="width: 100%;height: 11vh;background-color: ;padding-left: 5%;line-height: 11vh;font-size: 8em;font-weight: 900;">
+            当前版本为
+        </div>
+        <div id="banbenhao" style="width: 100%;height: 10vh;padding-left: 5%;line-height: 7vh;font-size: 5em;font-weight: 900;">
+            111
+        </div>
+
+        <div id="xbb"  style="width: 90%;height: 0vh;background-color: red;margin-left: 5%;border-radius: 33px;overflow: hidden;border-radius: 50px;
+background: #ffffff;
+box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;">
+            <div style="font-size: 5em;width: 92%;margin-left: 4%;font-weight: 900;">点击检查更新，版本没变则不需要更新</div>
+<!--            <img style="width: 100%;" src="http://m.qpic.cn/psc?/V11zqzyA1zbuQe/ruAMsa53pVQWN7FLK88i5toKoqdvwNYBGtyyf8pxkrsDABHccMdmRuCWAk4In7rsIErzV*GBaYBn7dxnYMeRU*qFIFOrN7iCpoxZ6l7wTtU!/m&bo=bAI1AWwCNQEDByI!&rf=insert_photo">-->
+        </div>
+
+        <div class="gn" style="width: 40%;height: 14vh;margin-left: 5%;margin-top: 5vh;float: left;text-align: center;
+    line-height: 7vh;background-color: red;box-shadow: #b20101 15px 15px 0px;border-radius: 44px;padding: 15px 10px;
+    color: #fff;border: none;font-weight: 900;font-size: 4em;text-transform: uppercase;min-width: 120px;
+    transition: transform 200ms, box-shadow 200ms;">阆中小区栋数地图</div>
+
+        <div class="gn" style="width: 40%;height: 14vh;margin-left: 5%;margin-top: 5vh;float: left;text-align: center;
+    line-height: 7vh;background-color: red;box-shadow: #b20101 15px 15px 0px;border-radius: 44px;padding: 15px 10px;
+    color: #fff;border: none;font-weight: 900;font-size: 4em;text-transform: uppercase;min-width: 120px;
+    transition: transform 200ms, box-shadow 200ms;">免费电影网站</div>
+
+
+
+
+    </div>
+</div>
+
+</body>
+
+<script>
+
+    var a;
+    $('.fanhui ').click(function () {
+        clearTimeout(a);
+        var n=$('.fanhui').index(this);
+        $('#'+$('.fanhui:eq('+n+')').attr('dengji')+'').removeClass('move_4');
+        $('.'+$('.fanhui:eq('+n+')').attr('huimu')+'').hide();
+        $('.fhzjm:eq('+n+')').hide();
+        $('#'+$('.fanhui:eq('+n+')').attr('dengji')+'').css('margin-left','100%');
+        $('#'+$('.fanhui:eq('+n+')').attr('dengji')+'').addClass('move_2');
+        a=setTimeout(function () {
+            $('#'+$('.fanhui:eq('+n+')').attr('dengji')+'').hide();
+            $('#'+$('.fanhui:eq('+n+')').attr('dengji')+'').removeClass('move_2');
+            $('.fhzjm:eq('+n+')').show();
+            $('#'+$('.fanhui:eq('+n+')').attr('dengji')+'').css('margin-left','0%');
+        },2000)
+
+    });
+
+    $('.gn ').click(function () {
+        clearTimeout(a);
+
+        if ($('.gn:eq('+$('.gn ').index(this)+')').text()=='阆中小区栋数地图'){
+            $('#lzditu').removeClass('move_4');
+            $('#lzditu').removeClass('move_2');
+            $('#lzditu').css('margin-left','0%');
+            $('#lzditu').removeClass('move_4');
+            $('#lzditu').hide();
+            $('#lzditu').show();
+            $('.fhzjm').show();
+            $('.yijihuimu').show();
+            $('#lzditu').addClass('move_4');
+            $('#zhenzheninput').focus();
+            a=setTimeout(function () {
+                $('#lzditu').removeClass('move_4');
+            },1500)
+        }else if ($('.gn:eq('+$('.gn ').index(this)+')').text()=='设置'){
+            $('#shouyeshezhi').removeClass('move_4');
+            $('#shouyeshezhi').removeClass('move_2');
+            $('#shouyeshezhi').css('margin-left','0%');
+            $('#shouyeshezhi').removeClass('move_4');
+            $('.fhzjm').show();
+            $('.liujihuimu').show();
+            $('#shouyeshezhi').hide();
+            $('#shouyeshezhi').show();
+            $('#shouyeshezhi').addClass('move_4');
+            a=setTimeout(function () {
+                $('#shouyeshezhi').removeClass('move_4');
+            },1500)
+        }else if ($('.gn:eq('+$('.gn ').index(this)+')').text()=='免费电影网站'){
+            $('#mfdywz').removeClass('move_4');
+            $('#mfdywz').removeClass('move_2');
+            $('#mfdywz').css('margin-left','0%');
+            $('#mfdywz').removeClass('move_4');
+            $('.fhzjm').show();
+            $('.yijihuimu').show();
+            $('#mfdywz').hide();
+            $('#mfdywz').show();
+            $('#mfdywz').addClass('move_4');
+            a=setTimeout(function () {
+                $('#mfdywz').removeClass('move_4');
+            },1500)
+        }
+
+    });
+
+    // xxxx
+    // 打开QQ
+    $('.dkqq ').click(function () {
+        window.open('mqq://');
+    });
+
+    // 更新地址
+    $('.dywz ').click(function () {
+        var n=$('.dywz ').index(this)
+            window.open($('.dywz:eq('+n+')').attr('dizhi'))
+    });
+    // ！！！发布后开启，云检测版本，不对则跳更新地址去
+    $.ajax({
+        url: "https://554h78p182.goho.co:30710",
+        method: "post",
+        timeout:10000,
+        success: function (data) {
+            if (parseInt(data)>parseInt($('#banbenhao').text())){
+                $('#xbb').trigger('click')
+                    alert('已发现新版本，请更新！')
+            }
+
+        },
+        error : function() {
+
+        }
+    });
+
+
+    // 更新地址
+    $('.gxfs ').click(function () {
+        var n=$('.gxfs ').index(this)
+        // if (n==0) {
+        //     window.open($('.gxfs:eq('+n+')').attr('dizhi'))
+        // }else
+            if (n==0) {
+            clearTimeout(a);
+            $('#jqqqts').removeClass('move_4');
+            $('#jqqqts').removeClass('move_2');
+            $('#jqqqts').css('margin-left','0%');
+            $('.fhzjm').show();
+            $('#jqqqts').show();
+        }else if (n==1) {
+            clearTimeout(a);
+            $('#jqqts').removeClass('move_4');
+            $('#jqqts').removeClass('move_2');
+            $('#jqqts').css('margin-left','0%');
+            $('.fhzjm').show();
+            $('#jqqts').show();
+        }
+        });
+    $('#xbb ').click(function () {
+        clearTimeout(a);
+        $('#xbbdzjm').removeClass('move_4');
+        $('#xbbdzjm').removeClass('move_2');
+        $('#xbbdzjm').css('margin-left','0%');
+        $('#xbbdzjm').hide();
+        $('#xbbdzjm').show();
+        $('.fhzjm').show();
+        $('#xbbdzjm').addClass('move_4');
+        a=setTimeout(function () {
+            $('#xbbdzjm').removeClass('move_4');
+        },1500)
+    });
+
+    $('.shezhi ').click(function () {
+        $('#shouyeshezhi_id ').trigger('click')
+    });
+
+    $('.tmzxz ').click(function () {
+        var n=$('.tmzxz ').index(this)
+        $('.fhzjm').css('opacity','1');$('.fanhui').css('opacity','1');$('.erjijiemianshezhi').css('opacity','1');$('.shezhi').css('opacity','1');
+        switch (n) {
+            case 0:$('.fhzjm').css('opacity','1');localStorage.fanhuitoumingdu=0;break;
+            case 1:$('.fhzjm').css('opacity','0.8');localStorage.fanhuitoumingdu=1;break;
+            case 2:$('.fhzjm').css('opacity','0.6');localStorage.fanhuitoumingdu=2;break;
+            case 3:$('.fhzjm').css('opacity','0.4');localStorage.fanhuitoumingdu=3;break;
+            case 4:$('.fhzjm').css('opacity','0.2');localStorage.fanhuitoumingdu=4;break;
+            case 5:$('.fanhui').css('opacity','0');$('.erjijiemianshezhi').css('opacity','0');$('.shezhi').css('opacity','0');localStorage.fanhuitoumingdu=5;break;
+            case 6:$('.fhzjm').css('opacity','0');localStorage.fanhuitoumingdu=6;break;
+        }
+
+    });
+
+
+
+    var ar = ['江南锦苑','南池世家','尊煌荣鼎','万驰英伦庄园',
+        '长安123456期','安泰金水湾','芙蓉园','江南奎星小区','阆城桃花源','七江还房小区','中润阆中国际商贸城','海棠逸家','阆苑瑞景','丽都花园','南池华章','蓝山公馆1期','金海棠家园','蓝山公馆2期','阆城一品2期(阆城一品国际社区)','隆源豪庭','七里春晓','七里香榭','双城际','新城花园','长安7期','长安7期B区','长安8期','长安9期','博雅华庭','城市领地','广厦上品小区','华鑫小区','华韵春天','金阆名都','阆中云天新里程(天府兴隆别苑)','南池嘉苑','欧锦国际','时代天骄','思缘天香御府','天合丽景','天籁之音','万富世家','馨园小区','英伦庄园','云天新城一号','紫荆城','蓝光星星国际','华胥丽景苑','阆城一品1期','金鼎星河湾','蓝色雅居小区','阆南明珠','五丰晶城公馆','丹桂华府','福苑小区','金碧天下','景观苑','罗马假曰','棕海国际小区','铂晶城','万鑫国际','阳光丽都','保宁华府','富泉嘉园','华胥龙田','金汇丽思国际公馆','金色维也纳(金色阳光)','金源利中央华城','王中王锦华家园','文华苑','新城首座','御苑圣景','华胥南苑','锦绣城','凌家坝小区','宏云江山国际','宏云滨河湾','阆中翡翠城','仁和逸居','阆中云天公寓','泸浪小区','千鹤3期','千鹤1区','千鹤2区','千鹤7区','千鹤6区','千鹤5区','千鹤4区','熊猫商业广场','锦绣新城','南池5期','鸿瑞颐苑','南池2期','南池1期','南池3期','南池4期','鲜于路南池小区','南池花园A区','福馨康庭','阆水广场小区','外国语实验学校（乔登美语)','三合小区','电力小区','东阳小区','顾家井巷100号小区','晨曦小区','铁塔花园小区','阆中蚕种场九三宿舍','汶博苑小区','顾家井巷124-126号小区','东江巷三号小区','东港花园','阳光花园','组织部宿舍','天汉明珠','河畔佳苑','名城禹王宫','金地禹王宫','阆水西院','太平寺108号小区','杨天井126号小区','关王庙155号小区','关王庙街10号小区','安居小区','阆苑生态住宅城','保宁花园保宁醋职工宿舍','梨园小区','春天苑','金沙花园','金沙半岛南苑','东方怡园','旭日小区','沁园小区','金沙半岛北苑(二期）','聚龙湾','蟠龙城市花园','—幢洋房','金星怡园','兴达嘉园','农业小区','北馨居小区','银盛小区','卓尚花园','金府花园','金鼎上城小区','瑞德苑','富强小区','益新家园','龙水世家','吉星居','中华坊一期','中华坊','玉景苑','阆城云锦雅居','阆城盘龙怡苑','晶城花园B区','国税小区','汉城家园','兰家坝小区','江景园2期','江景园','江山多娇B区','瑞福苑','怡合园','江山多娇','鑫月港湾','晶城花园A区','锦绣名都','天汉兰亭','瑞祥苑','龙溪苑','金水苑B区','金水苑A区','翡翠苑','西江丽景','玉台仙都','凤凰路三岔路棚户区','89队小区','龙源一区','翼德花园小区','寿东街8号小区','寿山寺东街10号小区','明杰小区','祥和小区','锦山花园','福寿小区','64号小区','顾家井16小区（顾家井20小区 )','畜牧局家属院','东城安泰小区','十二号小区','华市街小区','海达花园','银河御龙苑','宏凌山水城','敏捷天樾二期','龙洞沟小区','锦山小区','四期还房','幸福小区','保宁东院','敏捷天樾一期二区','阆水东路9号保宁醋小区','阆水东路11号明杰小区','滨花小区','诸仙苑小区','观音金星小' +
+        '区'];
+    var zi=['http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcTLf1d.CTsYvTUKPs4NtSnRmTlPZjZQota89GoB4gUAS7rF1ClzlrIq5vvKaptex3GIjI8i8KYb3HZcma7ync*k!/b&bo=uAFnAbgBZwEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLnMCO2VeY8m4dubq.zZdhJYJIYKM8XiS954zPpDJyDl81CQgh7PpIJ1lS4HJpGvlYE!/b&bo=wAMuA8ADLgMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLnp16MsgacIeKxCQm9QcRArtl9LgZKTc4kU2r7jgWiw1JNb3E9YuJdMBG*2n7qTAKY!/b&bo=fAKDAXwCgwEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLkvLSTs4DJvExswuNf6FYkNvG.yYsE1WdN0wzD5B05g2BKPm05PxnFk12M84TGVgaM!/b&bo=IAHQASAB0AEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLngNphKUjeV3YHWNsHJZsOLoNekUJGCELzdNckVvD9T57O0goRvGXhyVS2Jl0XFZiM!/b&bo=HQK3Ah0CtwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E3EkIIcV.HtdrENyTLv3JHTnpU4TGLSPTuAj0Bxy8HHej.kqlloG*w2RIOmQSKYPyE!/b&bo=oAJYAqACWAIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E3siCmuUOVcVAqs9doz2Pb93UJtShjLYG2uoW9Ai7NaEp21b0g0TQstkNY.TCe20KQ!/b&bo=BAK2AQQCtgEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E2iNdJEfVoKHoEmbVmmWXFo78o*dje8GxuzhprT0SQTgGkT9KfjYmQTxHpxSeEHwKU!/b&bo=.AEBAvgBAQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E0iJTqPfj3QZlSlAMsC1plColNL*DnACxeTvhdM1uhoZhpMMWtmURcySJf*JgtOLgk!/b&bo=hwLBAYcCwQEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC18D8ODlfnMzXNtC52UQzXJxE99ulpe1AWOUd3PkGEJfCElwUdtAuWmnQexC8Ft9ms!/b&bo=cgG4AXIBuAEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC3dfdC7vK2VMYrSiDy9wdkJ0XhL9tg54ZHN0f7oyZ64xCg5eQe4TzMbXMdVEIFSXcQ!/b&bo=*wJZAv8CWQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC0eqkMVaIk*X0KdWuL0WlOHKk*0kmzv*pROf5WXzaPVt24XaGjtLkMOWdLaahCsr1g!/b&bo=RwEbAUcBGwEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC0hvJmkPxJ6roohEmtbBrf1GjG3LwETQ5xrPfO*o39wnSUzls6IYMEVvEnnydqX7uQ!/b&bo=wgJSAsICUgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7LxEdxMOoxxXEW..bcXm9JOSy*EiVwtkhZVfYghu3JdSAtBff6bQyDw66jC3a1FEMY!/b&bo=awFCAWsBQgEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7IyWVNFh8vAzkb*GwTDpdERMRh*fQY6g.dgDvHb60dQOx9Cg00GaEpczfIHZiRrr3I!/b&bo=bQKhAm0CoQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7LMSzAjRhPw3GuzRjoyetOCqlA3CwJjJDv1q.bc1HvwEEn1rhwxo5pySiQ.lj.LCNU!/b&bo=RQJnA0UCZwMDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7Jt6NRwwe9YSoRPNKHi.BLct0XCJYDCUrqBFCILc2yR4Zt7YNICi68CmekUEkUI0bU!/b&bo=hwEZAocBGQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcI4LUbr*SIYBcIi4qGHB7LV*2iOuhtsEo6PvqoKVmptFa5Nl6b4Zu8KKvDjk3dMnwo!/b&bo=tgKdArYCnQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcJDm4w0enk7oJOuja6d6PslYu3J0ZlY0sNRgQExXhZL8.489fuwS8ysTEW2vhxe584!/b&bo=0AH*AdAB*wEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcKxlnXxpoS4kAFub3PNFwEzpKQkQ2b6PNOZAslLPB7MGG9pMTjuTKNkJQem18q5ybQ!/b&bo=9QHOAfUBzgEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcLgkkUmL.3yilG..BoO3DvnoKK9Ys5KdfhQboi5JmJN9l0f1rJwjgzigapyXxEXFUI!/b&bo=dgLWAXYC1gEBGT4!&rf=viewer_4',
+        'http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0gfD5ekbhi6jTlA7CprYBv6pkx4mKW5so.zKGfnLEYFs2kz21HNl1BuvmGctR0XWK0!/b&bo=DwJdAg8CXQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0g4TfwqyjAps9PDoey7W9Xs26N4LpvRyk9RX*rRodTK011nawTTMWuS0yUnbKv5iYI!/b&bo=sQHoAbEB6AEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0gc3ddlvdF5di8YmhaAbUf3scqxkqz9VpQ6TJ8j1bbcqRZAtEtMUul5MhNKK5iGj68!/b&bo=hAGeAYQBngEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0gSIJuLMpXvpBUjOTUUY1UZPUHoWdleRYTNaxwdsyid6mZvlSCRn*YgtBk5XEzq*C0!/b&bo=0AIpAtACKQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtwSUD008.gbRtIokXcmda5bYq.Twqajtth3HKpK*V4cvRt.5dvKTEggcd2x67yO3zE!/b&bo=dAG1AXQBtQEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtzgO6Sfwo34V8axIcUCU8uaZxpiwgeebCZjA94FuClxEagQq5ov0IJxrsiwEznYwP8!/b&bo=0AJTAtACUwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtwxdx6nXe5JG45gHRLOXdWjvfEo4WrrfscmqKd2Ie7fGiNxEYysc4pfHMDxIk*mW9A!/b&bo=ZwKcAmcCnAIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtyJV7N7PLHbf2VmD4EqBWd.zBkNZ1qgHjuzMFYvoFKyJjXmq8ngtB9VuN..*d5sxR0!/b&bo=rAIhAqwCIQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4hdKZGwlXzwL2beAENHyhYq0FSDYeqhb0gnrXaJynVQ8qdtEDbK9fCIEjrfotLE8Oo!/b&bo=0AJ2A9ACdgMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4glHRmG6pAtn5Y3HjbrCTsv4KTnAQuVTtfnpPpESYK9KK9CJ*BmZJ6Z5ee1yZObl6Y!/b&bo=ngK3Ap4CtwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4hOfIayG2xM2U8ESkgagYGgPbb4hn29WyJfaWefMAa.4rQf8wUTwPLGCDeqOqLdWLk!/b&bo=lQH.AZUB*gEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4gvA9NHgqtrlgVWf.49PxgVqpwxxjwILE7hvoZVQQxjZQYDs0qNGRX22ZpEU*UvQJ8!/b&bo=awECAmsBAgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*Iijv.2tu88s.6u3gEU.pP8IH007M2In85pZ6uS6ltOdtsoadB3WAEVGxCPIsoe6buo!/b&bo=0AIWAtACFgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*IgFiTK9H1ukIDD1pJuZ3XMKrn9ttJBdjnq2M.rUqTY1UyyYThxv2rbt9258DOKwsZI!/b&bo=EgJFAhICRQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*Ijq0FIdTY1gtIiGrcNzNj*XHapLQ*OUcXRUCkYIbnDl556oV0sjiAENnTaY69KdBfE!/b&bo=TAKuAkwCrgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*IicZDAJFCp.w8mbMsEIz7WkuCxNhs3EgjI7ZM0DKwqF8nMKYBKclhRxVFDFVQIfedw!/b&bo=wgIKAsICCgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznappAo4g0hhfnyXaDnlSN75g6YAEKqHAMVJaSAiTX45sEDQ0rnH0tNniiGLbw9.hP4!/b&bo=0AIkA9ACJAMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznZyGPOOLOZUYpj*2vXiBsYssGKppso0do9HbPEqUun1*IYl9aHHBhXTaB05n5eyj6w!/b&bo=QASVA0AElQMBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznZ0I9sCYLyaA.V71Ga81Er1q7nc.Q4*F6Y2yaZ4fpeQzlyOQlbR512gj3lZTAyZS9c!/b&bo=0AKRAtACkQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznbAHn7KLbAZEeZlIRzW7OJxD0*XOYTRvSTkI2oPdl4SFQ1tuavyBwtA5JYmK2tr3vU!/b&bo=0AKXAtAClwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SVHpQ1HMdevAVdLJXUkADWaIVoBjYb0FWYU2Illgsqib3BfbKZtXh5BdtollL8r1sU!/b&bo=IgLyASIC8gEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SW384jKvZKv8MZkYtuGhhpOShpVxZWOsXWdm3j5zXDkzhU67vGlSMW01Gq8.CUTipE!/b&bo=zAGGAcwBhgEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SVRvRCABMtR9NZbK9G1b1ns5jRTXfGAuiRVChyob3FHoed6zlx2f05vyhF.c3NfaxA!/b&bo=0AIuAtACLgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SVh9gFxhGBYHCm1VWqk7zgOZE0pWbDNl4ky9WZdcFPwO8NZ4*Rzuq3RIQC4E*69F.I!/b&bo=0ALTAdAC0wEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpA5VMPqkcCo83Exl7wznr6dXs4RwQO.E6fmsPmCPHegP9jjAvk5IBvY0w4d31GHz3Q!/b&bo=0AIkA9ACJAMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpBZUDIRPvRhGyUZ19AGTSAJ7Cayk*G0Yvca.goeqValU2JaM*LPIforwO2r4MbFXwE!/b&bo=QAZABu0H7QcBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpDf64bxCQg*0HY7lSeLeLveIUdMJyZO89asIV2T1B*4xOKrfBNiE4RelzoHYoRzBl4!/b&bo=0AKIAtACiAIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpBTfCuj5Jcj0*QRFYN9z19W0ypVGFHTn0q0kp6rp0oD0O5.D1RDU3KPoXzvXueJRlg!/b&bo=eQHZAXkB2QEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp.6FQQrJbY8uQWfTNdMBNXy3WW3Xy9T.if5UahqkEuSBKMKvA5f9mW98lJpBiaXXnw!/b&bo=OQLlATkC5QEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp*4FSGNUrVa5yU0aNhwxP9mieNGd1amWON0fslEmISgCuOeVNAtg*te902IUfqJNso!/b&bo=DQLWAQ0C1gEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp9K1e2MR3YtQfNjxOhwZru6JHLa4SIFcIjryhW2UnZzJMT5iNX51qrhLrvUmPBNVzY!/b&bo=dAKaAnQCmgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp9E1u0zl0tGqxpOWUik6odXtMfmQS7KV51BJF*9k8Lu8prFgsKEi6wyfy7ZDLylhE8!/b&bo=lAGaAZQBmgEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUFeuqsLVmak.mlSN1A7ZMNDJ2eRUsl*xmNE5JiLZ8n.5NeH3AwBcxXnVO2uPWKJ0NQ!/b&bo=CAJdAQgCXQEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUFmNR.MxlJdvUz9ch6VSj3YXG9I7Zj7WTUf6CqidhpN*3Rc5G3S1iPh3SyP*MsiqV0!/b&bo=uwAqAbsAKgEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUG6NoCsw35TOC57e*gUC3WSNA4iQ9dGjxfHk1Nmcb3Q5BmhLSwr64CDHsyUE*SHGRA!/b&bo=vQI1Ar0CNQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUFyZPaCGriz5lEfwGSHKStN.hTrXHNU52lo1nF7Mw.C8DNKbP.HHhuvzql.BdhopNs!/b&bo=dgElAnYBJQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66za1S4UL21n0dDCyIrN4HvV1YxvYK6jxlRtWCok4NI5mqNd5DNLJP2R3ceJf3Od4d28!/b&bo=mwKtApsCrQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zbrvHL0XFI3W2*W4bugaitTsvjoahuJrvlhq1OABFrd20w.IeYizIKZXKZ7gkbxcgs!/b&bo=0AKnAtACpwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zYYw2unDX7ZIL22*0X4AfUcqKFQjScOEYpHyH*LCXVYK1x1Kdd.NzSgfrabebwutdc!/b&bo=nAJfApwCXwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zZXnuaBNN74dqTNvQkR6kvMmsttcRoNoJb97thEDgwxckxjobjLPEtgbUoncS01O3Q!/b&bo=mQJ6ApkCegIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wkN*QDUrw6VDacX56yU2p*sCSw74qBdfBV*Y4z0wBD0As368ofvQ73ZRkCpI3mNwTU!/b&bo=GwNqAhsDagIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wnlrmFMMjHIiM.CidwkzEVwvlZT.94yiAO*p*LbdM5rKtGlnmLr5ZBpDRjodlAN99c!/b&bo=0ALyAdAC8gEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wmbLLxsodDJoRTrjGKEX25lWRUBkEg2n*PYkuanXqMpc*.cLO6PcTrhEIL4lyrKTig!/b&bo=3wRrA98EawMBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wkZyh*45OBUrlFVAVhO.GCSWxEAInpUZ2dSwFjBetoEAS00nsBVJglGPsElho5pfgc!/b&bo=0AKIAtACiAIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su848iSMKjS6bG*BlZAbIIYtgrw5DGGy9xV8dVQ40oI7.sKt5Sw6DhDNJDraRR8jo77QM!/b&bo=ggVMA4IFTAMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su84*XG1rIHlRkeSVwjI*gzn5HlMxYz2U5jrMzPN0oglLjcuiqIEsQixeL4pgAmOEQClE!/b&bo=0AJ3AtACdwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su848L5zHGiehxJchxV5quhZkPtD0UNvnRGPBhrdtW*fCfYMPWD1AscP.P1YC5b2fa*gY!/b&bo=LwOgAi8DoAIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su848Ka2NqWFy2JRmqGWkRj1vtFCv1ZVWbkLchhed9EPZ5x92fgslrNliCMRSjkIlurYU!/b&bo=0AKyAtACsgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqG*Sx8UhT*hQZqY3jKzBnStGtsGT3cLQlXIfHSBmoYp3YFmIATjwlvpTWN4wP4X4GQ!/b&bo=0AJaBNACWgQBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqEM9XyB688WSkydf664SsHx27Sc84*hZjd4vmB.Zrds5VAV2Gnc.SwK3dqod2uS6aU!/b&bo=7wO7Au8DuwIBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqHCnpjdVUdjb.3ciroNHWxaXepb9qa5CmHJEyG7lUZRlvGnD2xzbhZr.RbKEEo88oM!/b&bo=1QLhAtUC4QIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqEMAEwpuwOs0d7h0ko9Tkpq90*nxIAcqlX14OI.j3zlrStJp3BwOikZqQNo7icrXdE!/b&bo=MQTSAjEE0gIBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp9MBQ3A17LdCcU59zL2kRHSay9VLudsBVK3zxcQHzVkMNEl4fCgqvXeFUdnYcXYLJQ!/b&bo=6wP9AusD*QIBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp.zIFymWnAg3Atnt*QJovy.05TP3GZfnvJvVsZDzn4KRiZ9yRCbOGez8df58QyZCJA!/b&bo=.QMnA*kDJwMBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp9b4lT2NQ9OZ6etfpKyyy0up7ThaSC5LUrA5JQmX6GtsEMhLUTKgFIz1sdpahb8Sb0!/b&bo=NAT1AzQE9QMBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp9Pnmxjwh0vQHy2GiJwTxVV.cOgcVYTT9CMP.xz0x8Kxx9if8*AUULRJfnDPVpJtak!/b&bo=oQPTAqED0wIBKQ4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2IsnyXz*dvAJEv4hsCK7RNoIZpf07Dut0SR.UPoLJMpgVttdqw4iJIRukPrx0PatbOo!/b&bo=RAO9AkQDvQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2Is6X8od*0Y9b5sBn7SvUnHepx9x.**Pd5Z1sqG0hp.Hq09PzJC8HRD63fm62aWcVn0!/b&bo=.QIWA*kCFgMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2IvtefRV2M0O8FEJxiwzGk8hgrud*QFuigqtkAhbdFB4G9HfOeFQ9TSApg*Th6DQ4yM!/b&bo=QwEOAUMBDgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2IsBXPc85BKKuheF5z2fOUxGjeEyfPBZjbj5RESDf.yi88Ox*U7RAINpG5nJXlOkpTg!/b&bo=5gHUAeYB1AEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IURF*v.ov59rKxQCkdwZvAkxitpw*saPncuJOUss2hTL8Yld.gkfF3UNE3sHnr*TYg!/b&bo=gwKlAoMCpQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IWT7jSFsenOK.v2vPa1aybORo2QFLCoGGBBOE0e4axQj2kl6JFMul2vaGp1QvZ15tI!/b&bo=jgIjA44CIwMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IVeheC8QMhcLqv4ss.zI*o2lHoxbKWeoqbQfYVO7WhQNECTeQCk0mEW47GmeLAsX0o!/b&bo=YgORA2IDkQMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IUiselJg1LrbeoDnzZc8gA0j1AxDa9cCEI2xu86Izfi3mbihSwgZQdaVJXuYW9dz.8!/b&bo=egK7AXoCuwEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxRuF*gsB0pIebxpkSIghjQXsrK4MC9rnzyP9yGrHAc2.2zTZKDRTdsyhv900pjk4Zc!/b&bo=jgN2Ao4DdgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxS85n2bl1mIlVobBNXbKzuxlxVFbmXuRugtIe86yS1WQiiqfWTcgmGgb4D*n16BnzU!/b&bo=jANSAowDUgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxQNa8syahoWKJoYsyaW4y9L02BJsyBnlfIb0o.*kFDQ9XwUKnYRrp8iD0JSGNQcMyg!/b&bo=DQPDAg0DwwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxSXa56NtfmNJX3fpRCnXU9Ug1gv5i.8Dx0GXTH4yQphjNme2eRFH9*mZmrY.sMjMIE!/b&bo=1AKbAtQCmwIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5tKv2g2w*nL36fYapFBqwoTurBJc0sklMHIBnfVbYQHv8ruBh0HFiNiDciCeKjrRDw!/b&bo=qAHIAagByAEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5uxPQSTvwd0JytYFWjVA75Xwm0Hxr*P4DBUPdj9DQbhmg1o5C84v5TP6IKSafomX.o!/b&bo=yAE9A8gBPQMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5sNQLNTddvyOoiZeeZSmnKqAEOXNTlG606xZNIES5Klrszzqs9eMIZw7q710wWQB5U!/b&bo=cgJNAnICTQIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5usowrWUzUg9Vlb3JhdRNfG74DyZgb0zwDl5205r2KmCyh45NJywo1qdUdzo79pYA0!/b&bo=JAKPAyQCjwMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYqsoO.hHufiKrMntWH7rVO1DZuIHLZLlT7N6*342PJJqpij2dI7CrbwcpnTF62eh*OyeBVW7i9RcubliEd4K60!/b&bo=SQKoA0kCqAMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYqsoO.hHufiKrMntWH7rVMPzJiZJyxRnZY*CMisq1uQKfjY5wgksHdLBu7YJLapsBpMENqrKyFLYy3Z2fyBRCg!/b&bo=SAGOAkgBjgIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYqsoO.hHufiKrMntWH7rVOGUszJ.NI3BRKrrcETefkpoIZs6dpG.T1EsJm*jqkE4LJXca5N3kdyy*w3F8ZzyFI!/b&bo=kwFvA5MBbwMBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcYqsoO.hHufiKrMntWH7rVM8r4FaOKo1YfitriCbWGhcQVOYqVUZw3crIGbmtzaGjrw1f3IWjk2LcZfXqkwM7pI!/b&bo=TgKrAU4CqwEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mceQSdJ3vksOsRL1CVXqLHab1TqDHGK2xsjBGJF5TmhYoCqCqBM0sRqmGz9LTjayePZp8gptrieKB*Z49Rl2bl5g!/b&bo=xwHbAccB2wEBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mceQSdJ3vksOsRL1CVXqLHaYyhP4Osxhx4XzcjnJfY.qxdTcwZqrSzav7mMIrJnUNpvpueE8PqKPbEX0QGzDPLlw!/b&bo=7gdWBe4HVgUBOR4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcSiR4c76cKepxMm*ml8JzSjQTtb506liqZwzk.dDSEVO0PMpY1Sjdo4u4mLNCXMDayAiUMcOCAJJAe5cMvUZXzk!/b&bo=KAhABgAKqgcBGf8!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcSiR4c76cKepxMm*ml8JzSibGBNJUctaDxJ8ph94u*dbw*cnHjxCuShwD4cDnLyxBSmw03Wb7kAC76nDxo8ashM!/b&bo=4ghABgAKCQcBGZY!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcSiR4c76cKepxMm*ml8JzSiqQYtaLDugCtdBDSoLas008dmzMC4qDDGl3WCpfEA6LX8r9JzT8mVg8PJRDdgqEdc!/b&bo=QAZABgAKAAoBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcSiR4c76cKepxMm*ml8JzShoaMLUmeeqizV722m*niEA12x7TCCOVH1wPVWt.AtIx*luk8zxDfk8gwVFu47eC3s!/b&bo=rgJ6Aq4CegIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfrV7bUsDJLxend6N*t9YFXXG3FQNXYGeL5DAeXjtvp9pUqucJxtop612eL7w*F4K0kcVahIJ6bXlEDMYHw*Hig!/b&bo=4AF.AuABfgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfrV7bUsDJLxend6N*t9YFV*12p3.KW8wo0suyFJ4du.cOu1t1keeX0wih49qO0LJKGOBz.fB.s4sgk8G0Eki9k!/b&bo=bQK5Am0CuQIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfrV7bUsDJLxend6N*t9YFWduZrJkXK2vjAdFqhC19ZLckbV2Uj5zc3mb9FtBLfviFae4V4.c.s1hQ1dSY0Q*GE!/b&bo=jAIRAowCEQIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfrV7bUsDJLxend6N*t9YFWVNBD6XbWOq7y8hCX9Bb0O8lvG7Iaf9Ozj3YdV9dUwIOdXDXMeMmYrS1nUxHSD1JM!/b&bo=XwL9AV8C*QEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQErv4sIGbSKbOHHAr.C.ZUtXXD9sI4yCTjxb9bg4FVKbkq0FmiDa0hOR6q.A1.yW5zBfTOGH5cPrmzx8VhQuw0!/b&bo=tQHlAbUB5QEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQErv4sIGbSKbOHHAr.C.ZUzwfzz0xIdkr75Zc011aJUDlTQXrYtezS9mdLgtF0F6QKB.Ru4*HAdsmncXf0nwRk!/b&bo=fQLbAX0C2wEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQErv4sIGbSKbOHHAr.C.ZXR1N2XGo3JG6TM5.epI0Tb1exPJYLyoHvXof5Cru*fD9t4Z5R9tjI.AY*EOoVxjcs!/b&bo=rQKnAa0CpwEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQErv4sIGbSKbOHHAr.C.ZWbXA5ZuX9*MUIztF0x.grZ*5L8HNabRmyFaHbbab9LzjFknvs7mmPGC60AG9khBbw!/b&bo=2wF2AtsBdgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcTLf1d.CTsYvTUKPs4NtSnQoaGdQR6Lq5q*vyZywCJLBTIoDrJhD5z7elNfhPCvwK8pWtpB*F8vQPqcazI5R8vY!/b&bo=YwKUAmMClAIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcTLf1d.CTsYvTUKPs4NtSnShNc2Bnr7pIv6vhZqF0KIWEikYRppnzrLMOxLYe5xrl6uY5h5u3txAnTnQLVUjVTQ!/b&bo=YgJ4A2ICeAMDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcTLf1d.CTsYvTUKPs4NtSnQumeYOlNe6kWyKuDiJHMgGPjHFLHgMK7dtxVfLt*xGF0khq4Cq1LbrkniA9ByKAmU!/b&bo=zgIGA84CBgMDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcTLf1d.CTsYvTUKPs4NtSnTWHBQEj5AtQNcIQRvuehgV2CFAWc47zVRAeVbF9mueNBLgr7UdanT0tO.yT4JmJ08!/b&bo=TQPYAU0D2AEDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLl4LHOYnJSBYxqdCvMNR9OjTXgLaF03EkLXFqKlesvFB0kfGWzO01fm4Rh.sEwgxKI!/b&bo=QAZzBvkGMgcBGcc!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLkWiGLrWlz05Sy1XqjUN1GYLu4SuiXMLtZ3U0G4Z699TSmJg1NCIfodAGVJsq1nJCU!/b&bo=5AZABu8HMgcBGUc!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLmp5pyTDYfElRHDi0uQW*CcfMb5KaF4say*GTCa4DxsWPtWo79bfwhvfntgM3dq7YE!/b&bo=5AZABu8HMgcBGUc!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mceOusPZyIYGcmzl8ANvIaLmX0Vh1qPRLjLfaoC14YiwWGui3KLyVWqFDMDkQumwqYnLUK*Z9PFyd.OIBE.z1GkM!/b&bo=2gT4BNoE.AQBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E1IBT9PEjaz49y02f0yLcBe*jH5*KNEslhVuTp0OYZCWng2IOBKV2.D9Ufxoj6ZSyg!/b&bo=4wHVAeMB1QEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E13L9ALkUykTzHIZtgP2e5m8MEM4Dr5aVOG0DA7DVQFERLcLF4UAvfgjeRynBwTspc!/b&bo=jgL4AI4C.AADGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E0wqkdy9GhCjxzVPtSdzJTKg8K98cPwdwhK4I3CT.6SpQnjNJzM5nHEgqfETK2jqPo!/b&bo=3wCOAd8AjgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcUJMZ579a03UhJqNnm.88E1FOs98i0LhFVsndrqHIKcNWdq3YvTYMKAAchCCJ5twd0W5YvCOVBJvAdG8qmfrXUA!/b&bo=*wEMAv8BDAIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC2.JB2*CCKRguDn4TOWTpADt158jIVbQCWzwXAH6VA3xEZX6.jQcEEngt3IVU0wER0!/b&bo=0gKgAtICoAIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC002FuLXdCv2s4qxUNzcTkTmM39z.FMWJKjeoJ5ac1HsJWhE9Q3EReBZ.p46aIbWsw!/b&bo=hwMDBIcDAwQDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC0KFJr8hY7bpoSRvdn.G6U.jisNviuUMuKI5qMouBcb*iXUdum1FhMkf.BlaYcN9vE!/b&bo=UQJTAlECUwIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXasDff336rIivYlILKzLC2ESsQCtlEnSkfYXTOU.bXD9xEBKNK3cmHBkgoj5m8zMD1nC.shxIKIkLMjh6Ry9oM!/b&bo=SwLUAksC1AIBGT4!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7ICO1rwqNkmQ5L3IDPNGB*z*0E7IK3r7X*14rvmxLfSdrH5rogzSaciEBDrfR3QV1Y!/b&bo=UQP2AVED9gEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7JDtXQ4m*hyuRF7roG22qQWbE2Euhl1TK2QX.vtzpOiJTBhrOtHVqeZZ*KFmObC7Os!/b&bo=sQNZA7EDWQMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7KWBKRSGMJ15qWN0ERjnSNz9QY3F9T3vY3DcHrInjckB6DPod5WXnasAOvR3.HJuog!/b&bo=rQLpAq0C6QIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRCZyMIxHtszDU6c7injl7J2VHuET8ChZlUYgqp*OlthAy*rjn*scrNT1wKvr4t1gXC1mTpc0U898k0rCXi*wTQ!/b&bo=4AK.A.ACvgMDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcLiEKo3wRtH4XPPZphskQyB4qch8YgNlcqWHzRDCnZ9OT31.WpIIMq3F1NGBZ9DrTE!/b&bo=BwLzAQcC8wEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcJjHVP5*vWLWs39PzuYtAicxGQ7J8H4OJSM7PYlFpMg3weFHJMXQlZ5gxP*kKwCwCw!/b&bo=9wIkAvcCJAIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcJjLA6540Z8E.KvljMBUyauw.bfV2kKOMnnQ8p4mlPq5K.OGJnf.Uze5Oamg7D3MFY!/b&bo=wgPFA8IDxQMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcZe.n*Mw3gYWsZ940XScgcJfw7oiNzFrKS7uNv5dn*a9AjUHYlHG4Ms38m7Zmwk*qD0SpbGU2Jh8abbo18Hdj94!/b&bo=RANIA0QDSAMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0iH.A0EkC.4uUCp6AdqmvYCuQ8o8a.9FFriD4VC5QnKGqpWg5A0nB*lft9suNaweiU!/b&bo=WwJmA1sCZgMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0g4hUsO7Ii4K5RzShymqpAcLiWCIfOMb677a0MWD8z9.nCQIoBd0YJPEwpuWaW.q.Q!/b&bo=LALVASwC1QEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0iTfDTyRlPwavLPKCtWDnQBLX.8rRioYOUlPeU5kCgsf*lu*CARZul0vJMQS5CP4GM!/b&bo=ZgUAA2YFAAMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcVfhgLCkOIqdJGL1PUG*F0i9ToL6hwrFYk3lasy0Kary3SK29Vq.KhoQgGJ7E.AsQ1*iVBSF2ZjRH6fYLrdvxl8!/b&bo=OwNsATsDbAEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtyYhp*UCyFzP3kXRZvqj8s2FYWOSEeTo0T6VZ5fOSiG5xw3vvtQ.q3kJKu7.J.gj9M!/b&bo=JANIASQDSAEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtwsJIMx2pss71csJ6*p86916pHAYYf*l2rYFShEvLICImCq7pNz0w.hF*wNDP9y8HQ!/b&bo=WgJ3AloCdwIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtzI6dxkyVVNBvqjqY7q6hK3DCwsZzEmls8YfnEAU7yM5qVtv1OHlp5JnTY63SMCtvw!/b&bo=*gIjAv4CIwIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcYT.KmmNdRVSkkHxDJ9SNtz2g76cs33WUqWqyosm0bxkZ6FWoDKRrVHqtfQvvI95LIjqGYNR8bki8574WFw.J2s!/b&bo=VAQiAlQEIgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4j06c5tTSEH8MtMiRtISy9aBMEiCSQ9yl2aJmQGO4rqGI9cB8pWjlVh*s2ComX4Iv8!/b&bo=dwPLAXcDywEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4gnw33fg4C9vKgwofVDHV0TrlTwwYyT.ViO94qce2ymgHCV*9U6JzgMCG*dBR0yQ0k!/b&bo=PgTRAj4E0QIDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4g4VjkIX2F*rPR.goccUa.XsTd2upfjHZN4YXHVTL8bRAhe00F5YdpfVqQQpzjhdns!/b&bo=vwTfAb8E3wEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbMV3q8.ucr2OkO3Bk.D4jv*MMtYyvn*ePAJkkQhUjNo1MbpnuVahqSjlMceAXemeOUlqBvqLQBLb9sQRzKH4A!/b&bo=5QLvAeUC7wEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*IgPviCO47sTLsCWX4fZdOQs.gG7leaACk8xFlNLWmsBDffJF7addVcVu27bWAElTa8!/b&bo=3AILA9wCCwMDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*IgcP7IvdipvEE773.iSfhs*GTB8aVUaDHlMFSu7Ne*OBz8ExXud2mnwor5*cP3jf4U!/b&bo=AgarAwIGqwMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*IiSfUVDMke9dZqNUcFsQS7geS6hN9EAXCCPbHjivhW6fiJGfWKWjIemnb3LNPCJelc!/b&bo=WgJ2AVoCdgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWQ7etWdL34OwYn1xoru*Ihro8fZYLhC2cZw1D3FcKefvgfi6eGuGwioJfYlYrGjn0f*b7kKXvb5OUFK1NDB7dc!/b&bo=YgKWAWIClgEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznY56m0DroSaBxhMwxkHtilvLnye2Du*M877mdFsU71qQJDJ69yAJoIInHTbFuhcrDQ!/b&bo=5QKOA.UCjgMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznaGPJSay35P0d4iFuZobLEitI*KGCiU3egLlhprXvlYlvWXnYSBj*Y9ltPmggMuSyE!/b&bo=yQLSA8kC0gMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJazna7Wcj9WrdOLDljvjw7aGDobs*PuD9Xv0.rUFyuspqb26sFvNAqTvL6ZO*YC67zCXI!/b&bo=zgL8A84C*AMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcRL79ZFQz51W3N1aaqJaznayFnDUdAmSIK5ZbBOcrD4RWAtj93Ws5Jggjf1CuSlRyNMJH3L84RG9Q3ez1dL9.E0!/b&bo=RgTDA0YEwwMDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SXHZHGZDhVkuh8shsYW0iTfSS.JKwwn91jC9Qtx5RcCkE6yBYx5ZJCFbgvoVcQbgdU!/b&bo=KwLYASsC2AEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SV1*gHvGU.g2cSpXfB95OqYuzyTC1qg.s4Kz1ZJB725YpBrzmwSJDqslSWBRXMDUlA!/b&bo=YQPwAWED8AEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SUo.*wBARAG5rkvYB8kncjkG5TETuZaet.x0E3eO*WFM3TakGoJ*CmZA6WklBqDKiU!/b&bo=CQIyAQkCMgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcQdpe67bHsI98qUgyzR00SV5CW.ULKQE6hWvQJdfdAFOS5jaaldbXTsjMciosNS5lnp06m2yH9Bj5gYcqfQ0z9g!/b&bo=TAR.AkwEfgIDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpBJAIN7l9nspxkrz7ssmu5RNpdOms10FN576dVWjLuVhUv6ksxdUt**v5f1RquDiLU!/b&bo=EAHGARABxgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpACQ0QGUe42kVHyid7r4soUxBe5aGcz7gAzHyMDBncU4diFKxKITuBVxPOQy99J0Mc!/b&bo=WAHPAVgBzwEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpCobYiHLTaZizlBA5SOm1o4IsmxHoswNYyfCEwGFD25jKS7VgaljnN0MFRTMtobAnU!/b&bo=ZwEbAmcBGwIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcY9IV*iml9g3AB0I48mJTpAwYbmOxLE.R7csAQ97XPHO5dQkBtr2Z9w0YNWI7nPbfHCPuieFACGl5p3esFJfFw8!/b&bo=SwPoAUsD6AEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp.dqajHm4K3R4.vSaKlL5ror*KDgpExo*wtEfujfRzF3jUvfaLhKGCbXjtRwvV8C.A!/b&bo=AAJfAQACXwEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp.UAYdw52FLMpeAHJTqHxvfHXUDBIbYOEJ9QKDHARMtV9j*f90actHDqXUww9G1Mp0!/b&bo=OATrATgE6wEDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp8u43g6890hmvmXfDG.h4At3nITqJT6xjqUOvNGGMOUnjo0ujUmpx*majbObkRrvAk!/b&bo=*gLzA*4C8wMDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcewOnJj.GqYbZlMTKrnlvp*PFcBBY0UTTWjEB7b1NaPML*nSLchZcgBOadbdTTFddXuhuOQuf7jSDUw88DOEd10!/b&bo=wAIxAcACMQEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUEXokaZCJd.TywOGCz4xnuqME02kaCMtYCMlbiVJONY25sM*ZLkdP4WcOq*S*b0EuU!/b&bo=JAMKAiQDCgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUEtx4ZeqWMs2PYS2ECVZBnYsX.v1X5taGiZPoJWdcXoCUkwTF.1eJISVAvOoj5G51Q!/b&bo=sgWAAgAQBgcBGRo!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUGTXmkb8IN7zidPmyL3dnImpHb.Qbf6oZ83lgQLNhuZGGSA4SPUcgxN6gLi7vtyD9U!/b&bo=zwJwAc8CcAEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mccJuhz1dzbZc497kycwlDUHCCcymD51Nty3tTdoNdFdXU6eXW83fwBjelg2jSq7nGbI9H*41EpAp3Yvi3df2oI4!/b&bo=MQNeATEDXgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zb9IC3ArarWuj3eXEoiaUIc9igwHs2eWTpRUW4g8bdxrKCmmCIz2ZhpG.ceM3B5Y3Q!/b&bo=MAIoAzACKAMDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zZI2NXWTfpj2WOjtzK2xOOusue82bz6nl1e9SEA3l7G.GSY446eNLRYdIrKioYgJw4!/b&bo=BQPjAQUD4wEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zbeJX37GahMP5O027mBImgxULG*j3GkwrWpeBV8hOIJnH2Et0cYJRiNe7Sq.CjLSfE!/b&bo=0QFfAtEBXwIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcWjgpTYJav1KzQ19MjC66zasRCfg39SR9U*gYtfA7q33Oxh*MsUTtypoZFgR22EQ*cBsZA2WdrXuxx7ZI4N56Us!/b&bo=WQOVAlkDlQIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wll5BjY.QQ4ES6OwxR0.w*CiNJZXto23kWigVOU7vW1qQhfeBbIJF3nAsxIQxdGI3o!/b&bo=9wL1AvcC9QIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wmLtG*JqJEbb4YU1tuwqlqwZJErYfOhYDJvpbigRcuPkYKDm47xC7ny1XvCm0Qy5kI!/b&bo=VgKwAlYCsAIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wlwOMptiRzXpk8LaDltJNC1qYKPHnQ81*QbhqX0sgDhXNHDP0RvRQWW1XTdC2LU4OY!/b&bo=0AFuAtABbgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcfzHWJAKOqQx0Iejd3uw2wnzN6dOjbx2f0wbBHNPUT54zI8uNzlE8X78PipKNvrsN7cpBTwTJCXtfKCDN*XZbOE!/b&bo=2gHsAdoB7AEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su84*93Dm6jZzxRskBXh02f85kErxES7.nBYf8aWo5lyMuaT8ax3qxsZq4OBKYZqURFNQ!/b&bo=lARuApQEbgIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su848dzmaRx.T5PACHTUdXubuel9.srnshhB0.I8R6xaZfZeY8pUrauH3ssrHr7WkMjWQ!/b&bo=KwONAisDjQIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su8498r1A0PujJ85CaRTRgVhrJ7RwyKkQlwhFJMOP3kSmH7OZAFT9SQgkjaykWsjnzOIE!/b&bo=6QE6AukBOgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcc*Q2*xezwSRE3sdt7Su848Nh2B1J1dUSFJ2FDzl8SnKiGX20KunPMJAtD3DfFLjANdQKC4qJyOA9gEvHJesMt4!/b&bo=4APEAuADxAIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqE1*1iMRDzlVi6wYaZCKjQh51Bzgqd57zFuDJZ80hNhstqFKR4GtXCThHwonY1ApXc!/b&bo=hAPcAYQD3AEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqHFrqF2WwUFDbTesgPJMhhmf3UspISvO7BFG3R..dbx7tqt6BdXLyQmfC6wClbcC74!/b&bo=GQN7AhkDewIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqH0HD5N7HwpvNwYUSHeZAu*vFANKOyCryRPCDsnn6eE*4SJ.8zp6rSQr57A4u70oOQ!/b&bo=4gESAuIBEgIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcXbK*Uu6cxpjei0ACXNbVqG73XGlWItbUW23Hr6yXcXAjoP2f2j3OxZ8T4NrUfbr3s3nVMi5MAlBLgkPajF.RLI!/b&bo=sQEJAbEBCQEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp8ujh9*hgoYwDmmgbL0dAwWQ9WIS72*XWu9ZeRMzJDS6jau2cG7TMZupFWfr8iMTf4!/b&bo=*wHRAf8B0QEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp8H2l3CgTZ7LnoFyXDKVqLgD1W5sFqV8GLm8oBOpei1PcT0r.srqx.3tYDL0j1pq.E!/b&bo=qQGDAakBgwEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp.mdr7m*qZSXkXpo*vkcbwKGHR1mD60bsjwQ.pj1VddMFwhu3oWLeYwY9SGJcN4mJ0!/b&bo=nQHAAZ0BwAEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcdXeY.V9zk8KChXR7DLjBp.7AmN0wTrXi04Elv1e29eBAk1vYbaHwkhHS17Ie*7g3d8p6tJTyikS8O4zLRAgH04!/b&bo=XAEBAVwBAQEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2ItAK65w4ykEWub4sXu23dWDqL2lM8Kor064YDjZJctj1mo7HD5rqSNBmuQZMhwHogE!/b&bo=PwE3AT8BNwEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2Ivl67duMJ2vDOL0zVbfr6LSTd.mYWPUizws9CkrAk54zzArAatrAM44Daf6FNy94zU!/b&bo=kwFcApMBXAIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2Iuv61MaRXj8ewTuh5S3y8E*k1gkYlHDxO*kw38IPQR4urDmqoHF.bPyECj4*DPm4VE!/b&bo=XwGUAV8BlAEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcR67.QFt.otc20.NU3kN2Iu8ffRb*xEE9vi.bPMnnUOT.tTYB9PpvTF07JQQEP5WGSCAGrKAB8cUUslSzLsP3D0!/b&bo=wQZABgAQzg4BGW8!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IXOZIYpG6yafGrKkBmZyMiPM*10MC3fgViGUvLLbL2a157gfyPcQF*lxd7iY5HuRqI!/b&bo=gAKyBdACaAYBGbc!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IUQrK0HesFXqascoFgJ0jc5TNOLwzLsbLXoNEe20pdZtt5a4Bmuv2n81o0roB9Ek2k!/b&bo=BAM5AQQDOQEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IUjyVlVCHy9FmgYPrFJJ67FxAKM6R447OkL8veyh7cS*eKJVDoqZODqbnysrjLI3hM!/b&bo=qgH5AKoB.QADGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcREoHIckQSWgrwj*PVFz6IXZu3gWwCpLKIo9wb0rjlewKF1bYkm.LIvOwkeZUDr2IC2dddWXCnN*FV.rNAbX*Vw!/b&bo=4wP2AuMD9gIDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxSXZtYpLdVuMX4kULDGuwTZKl.ejrLJc3*rvTQeJ7Xnnx7GSllhnAl9JKTytJB*RLU!/b&bo=IgLKASICygEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxQhT5FUeohtE3Oc6yuo6W85nmLFNAZao54mUK1enqJVJFKHi2gdjUIVfLkzmzKM2vE!/b&bo=hAH4AIQB.AADGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxTXqD0Gulv8x0H3toz1OTBKeu2sL7pF0Rw69BiS7KP4tbUp4yQEmpdhvp*BAseMytY!/b&bo=FgNdARYDXQEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcbTP.sPikGsj2jpXAwRPnxQaC*CvVBOHItDorxOPoEXVaKQnUrxZImJIfMD3QlmfgaqR2dMsJKGMXbgKaxa4WjA!/b&bo=QgSJAkIEiQIDORw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5vj*1Cj0Ultq52KXE5Pt2fXfDFRREUSAoxcjxMQQ3Rg10LYHNs.FT9u7yCj7TE9lqQ!/b&bo=RAK.AUQCvgEDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5vXZWdfgfTu3QbfWfSHIt1XXJdPscV8ymTcGppZJ0LMdG7tbhNGWvsJX7hfnajXqgw!/b&bo=6AJGAugCRgIDKQw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5vwZkFzBCncreYl9JmNbW34MfugTvR*a7e4kvGdcA*Vrb53ma93dnfNp4QLR8SDkSs!/b&bo=ZwIRAmcCEQIDGTw!&rf=viewer_4','http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1cx2p9/45NBuzDIW489QBoVep5mcd11OFyie**bPjLIR65Hp5uSzjrRf9CM8H2P14Cd6y2AterZ3rGn*pJFKBNdpVwNRuHVQWSmLLVZVwTs34gHDEs!/b&bo=*AGWAfwBlgEDGTw!&rf=viewer_4'
+    ]
+
+
+    // var u = navigator.userAgent;
+    // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    // var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    // if (isAndroid) {
+    //     alert('android')
+    // }
+    // if (isiOS) {
+    //     alert('ios')
+    // }
+
+    // navigator.clipboard.readText()
+    //     .then(text => {
+    //        alert(text)
+    //     })
+    //     .catch(err => {
+    //         alert(err)
+    //
+    //     });
+
+    // if (!localStorage.dituweiyima || localStorage.dituweiyima.replace(/(^\s*)|(\s*$)/g, "") == ""){
+    //     var zimu =  new Array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+    //         'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+    //     var dituweiyima='';
+    //     for(var z=0;z<=5;z++){
+    //         var x = 51;
+    //         var y = 0;
+    //         var rand = parseInt(Math.random() * (x - y + 1) + y);
+    //         dituweiyima=dituweiyima+zimu[rand];
+    //     }
+    //     localStorage.dituweiyima=dituweiyima;//交易码
+    //     // 第一次使用加一  dycsyjy
+    //     $.ajax({
+    //         url: "/xq",
+    //         data:{xq:"dycsyjy",gxl:localStorage.xiaoqu_gaoxiaolv_kaiqi},
+    //         method: "post",
+    //         timeout:10000,
+    //         success: function (data) {
+    //         }
+    //     });
+    // }
+
+    // $('.dcwjda ').click(function () {
+    //     localStorage.好感调查问卷已填='y';
+    //     var n=$('.dcwjda').index(this);
+    //     $('.yijitanchuang_quxiao').trigger('click')
+    //     // 提交调查问卷的答案 tjdcwjdda
+    //     $.ajax({
+    //         url: "/xq",
+    //         data:{xq:"tjdcwjdda",v:'阆中'+$('.dcwjda:eq('+n+')').text()},
+    //         method: "post",
+    //         timeout:10000,
+    //         success: function (data) {
+    //         },
+    //     });
+    // })
+
+    $('#zzxlh ').click(function (e) {
+        $('#zzxlhjm').show();
+        $('.yijihuimu').show();
+    })
+
+    $('#zhenzheninput ').click(function (e) {
+        e.stopPropagation();
+    })
+    $('#dingweihoujiemian_ys ').click(function () {
+        $('#dingweihoujiemian_ys').height('70vh')
+        $('#xiaoqu_rongqi').height('30vh')
+    })
+    $('#mxllq ').click(function () {
+        $('#gaoxiaolvmoshiyongfa').show()
+        $('.yijihuimu').show()
+    })
+
+    $('#fzwxhbdkwx ').click(function () {
+        navigator.clipboard.writeText('ccwm333').then(() => {
+        })
+        window.location.href='weixin://';
+    })
+
+
+    $('#dtschjc ').click(function () {
+        $('#dtschjc_jm').show()
+        $('.yijihuimu').show()
+    })
+
+    var arlength=ar.length;
+    $("#zhenzheninput ").bind('input propertychange', function() {
+        if($("#zhenzheninput").val().replace(/(^\s*)|(\s*$)/g, "") == ""){
+            $('#xiaoqu_rongqi').text('请输入小区名');
+            console.log('a')
+        }else{
+            $('#xiaoqu_rongqi').text('');
+            var i;
+            for (i=0;i<arlength;i++){
+                if (ar[i*1].indexOf($('#zhenzheninput').val())!=-1){
+                    let tr='<div style="width: 94%;margin-left: 3%;height: 180px;line-height: 180px;background-color: white;margin-top: 20px;\n' +
+                        '                border-radius: 8px;overflow: hidden;"  class="fuhedexiaoqu" urlnum="'+i+'">'+ar[i]+'</div>';
+                    $('#xiaoqu_rongqi').append(tr);
+                }
+            }
+            if (i>=ar.length){baiguan();if ($('.fuhedexiaoqu').length==0){$('#xiaoqu_rongqi').text('无结果，可能你小区名没写对');}}
+            setTimeout(function () {
+                $('#xiaoqu_rongqi').scrollTop(0)
+            },200)
+        }
+
+    })
+
+
+    $('#djxzxllq ').click(function () {
+        window.location.href=$('#djxzxllq').attr('url')
+    })
+
+    $('#yongfa ').click(function () {
+        $('#gaoxiaolvmoshiyongfa').show()
+        $('.yijihuimu').show()
+    })
+
+
+
+
+
+
+
+
+    // 点击安卓或者苹果
+    $('.sjxt ').click(function () {
+        $('.xzllq:eq('+$('.sjxt').index(this)+')').show();
+        $('.erjihuimu').show();
+    });
+
+    $('.llq ').click(function () {
+        window.location.href=$('.llq:eq('+$('.llq').index(this)+')').attr('tp');
+    });
+
+    // 生成 APP到手机桌面
+    $('#scappdsjzm ').click(function () {
+        $('#xzsjxt').show();
+        $('.yijihuimu').show();
+    });
+
+    // 查看地图大致覆盖范围
+    $('#dtdzfkfw ').click(function () {
+        window.location.href='http://m.qpic.cn/psc?/V514dDdm03Kp411UeOEl2ff9jq1OppF9/45NBuzDIW489QBoVep5mcS61iV2GUYL1klxQqo0vXOvo5rtd1qHWV7713j0QekVP1kxf6nr2GkY9wwdB9ZUR9K0IVsz2XpB.oI6XTYFo*xo!/b&bo=0AIgBNACIAQBKQ4!&rf=viewer_4';
+    });
+
+    // 查看例子
+    $('.cklz ').click(function () {
+        window.location.href=$('.cklz:eq('+$('.cklz').index(this)+')').attr('lz');
+    });
+
+
+    $('#ccwm ').click(function () {
+        $('.jinggaotishi').show().text('已复制，打开微信中..').css('background-color','green').css('color','white');
+
+        setTimeout(function () {
+            $('.jinggaotishi').hide();
+
+        },5000);
+
+        setTimeout(function () {
+            window.location.assign('weixin://');
+
+        },100);
+    });
+    $('#zhenzheninput ').focus(function () {
+        $('#dingweihoujiemian_ys').height('30vh')
+        $('#xiaoqu_rongqi').height('70vh')
+        $('#zhenzheninput').val('')
+    });
+    $('#sou_input ').focus(function () {
+        $('#dingweihoujiemian').show();
+        $('#zhenzheninput').focus();
+    });
+
+    $('#xiaoqu_rongqi ').click(function () {
+        $('#dingweihoujiemian_ys').height('70vh')
+        $('#xiaoqu_rongqi').height('30vh')
+    })
+    // 点击小区查看图片
+    $(document).on('click','.fuhedexiaoqu ',function () {
+        var n=$('.fuhedexiaoqu').index(this);
+        bai('加载地图中');
+        baiguan();
+        // 查询加一 cxjjy
+        window.location.href=zi[$('.fuhedexiaoqu:eq('+n+')').attr('urlnum')];
+        // $.ajax({
+        //     url: "/xq",
+        //     data:{xq:"cxjjy",name:$('.fuhedexiaoqu:eq('+n+')').text()},
+        //     method: "post",
+        //     timeout:10000,
+        //     success: function (data) {
+                // $('#dingweihoujiemian_ys').height('70vh')
+                // $('#xiaoqu_rongqi').height('30vh')
+                // $('#zhenzheninput').val('')
+                // xzxz
+        //     },
+        //     error : function() {
+        //         hong();
+        //     }
+        // });
+
+// 查询次数加一 cxcsjy
+//         $.ajax({
+//             url: "/xq",
+//             data:{xq:"cxcsjy",zh:localStorage.xiaoqu_zh},
+//             method: "post",
+//             timeout:10000,
+//             success: function (data) {
+        // baiguan();
+        // if (data=='1'){
+        //     $('#chaxuncishu').text(parseInt($('#chaxuncishu').text())+1);
+        // window.location.href=$('.fuhedexiaoqu:eq('+n+')').attr('url');
+        // }else {
+        //     alert('今天查看次数已超量，明天才能继续查看');
+        //
+        // }
+
+        //     },
+        //     error : function() {
+        //         hong();
+        //     }
+        // });
+    });
+
+    // 分解线上面地图代码
+
+    // setTimeout(function () {
+    //     // $('#lzditu').css('-webkit-animation','move_3 1s cubic-bezier(.01,.98,.02,1)');
+    //     // $('#lzditu').show();
+    //     // $('#lzditu').addClass('move_2');
+    // },0)
+    // setTimeout(function () {
+    //     // $('#lzditu').css('-webkit-animation','move_3 1s cubic-bezier(.01,.98,.02,1)');
+    // },1000)
+
+
+
+    $(document).ready(function() {
+        $('#xbb').css('height',$('#xbb').width()/2)
+
+
+        switch (parseInt(localStorage.fanhuitoumingdu)) {
+        case 0:$('.fhzjm').css('opacity','1');localStorage.fanhuitoumingdu=0;break;
+        case 1:$('.fhzjm').css('opacity','0.8');localStorage.fanhuitoumingdu=1;break;
+        case 2:$('.fhzjm').css('opacity','0.6');localStorage.fanhuitoumingdu=2;break;
+        case 3:$('.fhzjm').css('opacity','0.4');localStorage.fanhuitoumingdu=3;break;
+        case 4:$('.fhzjm').css('opacity','0.2');localStorage.fanhuitoumingdu=4;break;
+        case 5:$('.fanhui').css('opacity','0');$('.erjijiemianshezhi').css('opacity','0');$('.shezhi').css('opacity','0');localStorage.fanhuitoumingdu=5;break;
+        case 6:$('.fhzjm').css('opacity','0');localStorage.fanhuitoumingdu=6;break;
+    }
+
+    });
+    // 点各级灰幕会退出各种灰幕
+    $('.huimu ').click(function () {
+        var h=$('.huimu').index(this);
+        if (h==0){$('.yijitanchuang').hide();$('.yijihuimu').hide();}
+        if (h==1){$('.erjitanchuang').hide();$('.erjihuimu').hide();}
+        if (h==2){$('.sanjitanchuang').hide();$('.sanjihuimu').hide();}
+        if (h==3){$('.sijitanchuang').hide();$('.sijihuimu').hide();}
+        if (h==4){$('.wujitanchuang').hide();$('.wujihuimu').hide();}
+        if (h==5){$('.liujitanchuang').hide();$('.liujihuimu').hide();}
+    });
+    function hong(){
+        $(".jinggaotishi").show().text("发生错误").css("background-color","green").css("color","white");
+        setTimeout(function () {
+            $(".jinggaotishi").fadeOut("fast");
+        },1000);
+        $(".quanpinghuimu").hide();
+    }
+    function hongzdy(h){
+        $(".jinggaotishi").show().text(h).css("background-color","green").css("color","white");
+        setTimeout(function () {
+            $(".jinggaotishi").fadeOut("fast");
+        },1000);
+        $(".quanpinghuimu").hide();
+    }
+    function huang(a){
+        $(".jinggaotishi").show().text(a).css("background-color","yellow").css("color","black");
+        setTimeout(function () {
+            $(".jinggaotishi").fadeOut("fast");
+        },1000);
+        $(".quanpinghuimu").hide();
+    }
+    function lv(a){
+        $(".jinggaotishi").show().text(a).css("background-color","green").css("color","white");
+        setTimeout(function () {
+            $(".jinggaotishi").fadeOut("fast");
+        },1000);
+        $(".quanpinghuimu").hide();
+    }
+    function bai(a){
+        $(".jinggaotishi").show().text(a).css("background-color","white").css("color","black");
+        $('.quanpinghuimu').show();
+    }
+    function baiguan(){
+        $(".jinggaotishi").hide();
+        $('.quanpinghuimu').hide();
+    }
+    // 一级二级三级弹窗的关闭-----------------------------------------------------------------
+    $('.yijitanchuang_quxiao').click(function() {
+        $('.yijitanchuang').hide();
+        $('.yijihuimu').hide();
+    });
+    $('.erjitanchuang_quxiao').click(function() {
+        $('.erjitanchuang').hide();
+        $('.erjihuimu').hide();
+    });
+    $('.sanjitanchuang_quxiao').click(function() {
+        $('.sanjitanchuang').hide();
+        $('.sanjihuimu').hide();
+    });
+    $('.sijitanchuang_quxiao').click(function() {
+        $('.sijitanchuang').hide();
+        $('.sijihuimu').hide();
+    });
+    $('.wujitanchuang_quxiao').click(function() {
+        $('.wujitanchuang').hide();
+        $('.wujihuimu').hide();
+    });
+    $('.liujitanchuang_quxiao').click(function() {
+        $('.liujitanchuang').hide();
+        $('.liujihuimu').hide();
+    });
+</script>
+
+
+</html>
